@@ -1,5 +1,6 @@
 import React from "react";
 import './App.css';
+import Map from './map';
 import Signup from './Signup';
 
 function App() {
@@ -7,6 +8,8 @@ function App() {
     <div>
       <Signup />
     </div>
+
+
   );
 }
 
