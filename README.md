@@ -10,7 +10,6 @@ Changes to the files will auto restart the server.
 
 ## Frontend
 
-`npm install -g create-react-app`
 `cd frontend`<br/>
 `npm install`<br/>
 `npm start` (this will start the react development server in your browser)
