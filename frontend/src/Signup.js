@@ -1,10 +1,12 @@
 import React from 'react';
 import './Signup.css';
+import { signin, logout } from "../helpers/helpers.js";
+
 
 function Signup() {
 
   return (
-    
+
     <div className="container" id="container">
        <div className="form-container sign-up-container">
        </div>
@@ -28,7 +30,6 @@ function Signup() {
     </div>
 
     );
-
 
 }
 
