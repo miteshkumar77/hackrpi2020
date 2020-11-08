@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom'
 import './Signup.css';
 import firebase from 'firebase';
 import "firebase/auth";
@@ -72,6 +73,23 @@ function Signup() {
         // [END createwithemail]
       }
 
+      function handleStateChange() {
+      // Listening for auth state changes.
+      // [START authstatelistener]
+      firebase.auth().onAuthStateChanged(function(user) {
+        // [START_EXCLUDE silent]
+        document.getElementById('quickstart-verify-email').disabled = true;
+
+        // [END_EXCLUDE]
+        if (user) {
+          // User is signed in.
+          return <Redirect to='/Map' />
+          // [END_EXCLUDE]
+        }
+        // [START_EXCLUDE silent]
+        document.getElementById('quickstart-sign-in').disabled = false;
+        // [END_EXCLUDE]
+      });
 
   return (
 
@@ -94,6 +112,8 @@ function Signup() {
              <button onClick={handleSignUp}>Sign Up</button>
           </form>
        </div>
+
+       <button onClick={handleStateChange}>Continue</button>
     </div>
 
     );
