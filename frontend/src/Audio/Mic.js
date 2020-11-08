@@ -1,8 +1,11 @@
-import MicRecorder from 'mic-recorder-to-mp3';
 import React, { Component } from 'react'
+import MicRecorder from 'mic-recorder-to-mp3';
 
+// gs://sound-bite-277bd/sounds/blob:http:/localhost:3000/dee2a1ea-091b-4405-97cd-8737ce4eb596
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
-
+// https://us-central1-sound-bite-277bd.cloudfunctions.net/SpeechToText?bN=sound-bite-277bd&sAN=sounds/blob:http:/localhost:3000/dee2a1ea-091b-4405-97cd-8737ce4eb596
+// https://us-central1-sound-bite-277bd.cloudfunctions.net/SpeechToText?bN=sound-bite-277bd&sAN=sounds/blob:http:/localhost:3000/085d5f12-8b7b-44e0-957e-df063b7a77c5
+//gs://sound-bite-277bd/sounds/blob:http:/localhost:3000/085d5f12-8b7b-44e0-957e-df063b7a77c5
 export default class Mic extends Component {
 
     constructor(props) {
@@ -17,7 +20,6 @@ export default class Mic extends Component {
             blobURL: ''
         };
     }
-
 
 
     startRecording = () => {
@@ -47,6 +49,7 @@ export default class Mic extends Component {
     };
 
     submitRecording = () => {
+        console.log("submitting blobURL...");
         this.props.setBlobURL(this.state.blobURL);
         this.setState({ blobURL: '' })
     }
@@ -124,4 +127,3 @@ export default class Mic extends Component {
         );
     }
 }
-

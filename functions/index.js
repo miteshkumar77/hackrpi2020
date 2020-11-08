@@ -1,6 +1,8 @@
 const functions = require('firebase-functions');
 const SpeechToText = require('./SpeechToText');
-const admin = require('firebase-admin');
-admin.initializeApp();
+const TextSearch = require('./textSearch.js');
 
-exports.SpeechToText = SpeechToText.requestHandler; 
+exports.SpeechToText = SpeechToText.requestHandler;
+exports.AddToIndex = TextSearch.addToIndex;
+exports.UpdateIndex = TextSearch.updateIndex;
+exports.DeleteFromIndex = TextSearch.deleteFromIndex; 
