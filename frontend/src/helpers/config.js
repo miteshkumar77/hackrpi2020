@@ -11,4 +11,11 @@ const firebaseConfig = {
     measurementId: "G-7E69FQD44P"
 };
 
-export { firebaseConfig }; 
+const algoliaConfig = {
+    ALGOLIA_ID: '4YXR8SJR33',
+    ALGOLIA_ADMIN_KEY: '35870bb59e5875f4d6fa1079f01fd34d',
+    ALGOLIA_SEARCH_KEY: '5637f4bf6ec89469e92720ee0d26d5c1',
+    ALGOLIA_INDEX_NAME: 'transcription',
+};
+
+export { firebaseConfig, algoliaConfig }; 

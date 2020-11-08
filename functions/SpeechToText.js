@@ -1,7 +1,11 @@
+const db = require('./app').app.firestore();
 const functions = require('firebase-functions');
 const speech = require('@google-cloud/speech');
 const ffmpeg = require('fluent-ffmpeg');
 const ffmpeg_static = require('ffmpeg-static');
+
+
+
 ffmpeg.bin = ffmpeg_static.path;
 const path = require('path');
 const os = require('os');
@@ -47,6 +51,7 @@ const textToSpeech = async (fpath) => {
 const requestHandler = functions.https.onRequest(async (req, res) => {
     const bucketName = req.query.bN;
     const srcAudioName = req.query.sAN;
+    const username = req.query.username;
     const fileName = 'temporary_soundbite';
     const tempFilePath = path.join(os.tmpdir(), fileName);
     const targetTempFileName = fileName.replace(/\.[^/.]+$/, '') + '_output.flac';
@@ -77,6 +82,13 @@ const requestHandler = functions.https.onRequest(async (req, res) => {
 
     fs.unlinkSync(tempFilePath);
     fs.unlinkSync(targetTempFilePath);
+
+    db.collection('transcription').add({
+        username: username,
+        text: transcription,
+        bucket: bucketName,
+        location: srcAudioName
+    });
 
     res.json({ transcription: transcription });
 });

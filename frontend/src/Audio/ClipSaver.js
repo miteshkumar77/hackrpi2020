@@ -1,22 +1,17 @@
 import React from 'react'
 import { soundStorage, speechToText } from '../helpers/helpers';
 import Mic from './Mic';
-
+import { getCurrentUser } from '../helpers/helpers';
 const options = {
     metadata: {
         contentType: 'audio/mpeg',
     }
 };
 
-// https://us-central1-sound-bite-277bd.cloudfunctions.net/SpeechToText?bN=sound-bite-277bd&sAN=sounds/blob:http:/localhost:3000/085d5f12-8b7b-44e0-957e-df063b7a77c5
-
-// https://us-central1-sound-bite-277bd.cloudfunctions.net/SpeechToText?bN=sound-bite-277bd&sAN=
 const speechToTextEndpoint = 'https://us-central1-sound-bite-277bd.cloudfunctions.net/SpeechToText?bN=sound-bite-277bd&sAN=';
 const bucketName = 'sound-bite-277bd';
 
 function ClipSaver() {
-
-
 
     const setBlobURL = async (blobURL) => {
 
@@ -32,7 +27,7 @@ function ClipSaver() {
             } else {
                 console.log('Uploaded sound blob!');
                 console.log('sounds/' + blobName);
-                const command = speechToTextEndpoint + "sounds/" + blobName;
+                const command = speechToTextEndpoint + "sounds/" + blobName + '&username=' + getCurrentUser().email;
                 const data = await fetch(command, { method: 'POST', mode: 'no-cors' });
 
             }
