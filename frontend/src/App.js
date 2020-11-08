@@ -1,12 +1,13 @@
 import React from "react";
 import './App.css';
-import Map from './map';
+// import Map from './map';
 import Signup from './Signup';
-
+import ClipSaver from './Audio/ClipSaver';
 function App() {
   return (
     <div>
-      <Signup />
+      <ClipSaver />
+      {/* <Signup /> */}
     </div>
 
 
