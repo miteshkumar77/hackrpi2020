@@ -83,7 +83,7 @@ function Signup() {
              <h1>Sign in</h1>
              <input type="text" id="email" name="email" placeholder="Email" />
              <input type="password" id="password" name="password" placeholder="Password" />
-             <button disabled onClick={toggleSignIn}>Sign In</button>
+             <button onClick={toggleSignIn}>Sign In</button>
           </form>
        </div>
        <div className="overlay-container">
