@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
-
-
+import { soundStorage } from './helpers/helpers'
 import algoliasearch from 'algoliasearch/lite';
 import { InstantSearch, SearchBox, Hits } from 'react-instantsearch-dom';
 import { algoliaConfig } from './helpers/config';
@@ -14,6 +13,15 @@ class Hit extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            audioSrc: ""
+        }
+    }
+
+    componentDidMount() {
+        soundStorage.refFromURL(`https://storage.googleapis.com/${this.props.hit.bucket}/${this.props.hit.location}`).getDownloadURL().then((storageUrl) => {
+            this.setState({ audioSrc: storageUrl });
+        });
     }
     render() {
         console.log(this.props);
@@ -26,6 +34,11 @@ class Hit extends React.Component {
                 <div className="hit-text">
                     {this.props.hit.text}
                 </div>
+                <audio
+                    ref="audioSource"
+                    controls="controls"
+                    src={this.state.audioSrc}
+                />
             </div>
         )
     }

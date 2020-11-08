@@ -104,12 +104,12 @@ export default class Login extends Component {
                         onClick={this.googleSignIn}>
                         Sign in with Google
           </button>
-                    <button
+                    {/* <button
                         className="btn btn-secondary"
                         type="button"
                         onClick={this.githubSignIn}>
                         Sign in with GitHub
-          </button>
+          </button> */}
                     <hr />
                     <p>
                         Don't have an account? <Link to="/signup">Sign up</Link>
